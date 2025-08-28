@@ -1,5 +1,4 @@
-// ================= Variables & Conditionals =================
-// Store my age and name, then check if I am old enough to vote.
+// ================= Part 1: Variables & Conditionals =================
 let myAge = 17;
 const myName = "Khensani";
 
@@ -9,18 +8,16 @@ if (myAge >= 18) {
     console.log(myName + " is too young to vote.");
 }
 
-// ================= Functions =================
-// Function that greets the user with their name
+// ================= Part 2: Custom Functions =================
 function greetUser(name) {
     return "Hi " + name + ", welcome to my page!";
 }
 
-// Function that describes my favorite snack and how much of it I want
 function favoriteSnack(snack, quantity) {
     return `I love ${quantity} servings of ${snack}!`;
 }
 
-// Function that calculates how many years are left until voting age
+// NEW: Function to calculate years until voting age
 function yearsUntilVoting(age) {
     if (age >= 18) {
         return "You are already old enough to vote!";
@@ -29,42 +26,39 @@ function yearsUntilVoting(age) {
     }
 }
 
-// Call functions and log results
 console.log(greetUser(myName));
 console.log(favoriteSnack("tropical fruit salad", 2));
 console.log(yearsUntilVoting(myAge));
 
-// ================= Loops =================
-// Create an array of hobbies
+// ================= Part 3: Loops =================
 const hobbies = ["coding", "writing"];
 
-// For loop: display hobbies one by one
+// For loop
 for (let i = 0; i < hobbies.length; i++) {
     console.log(hobbies[i]);
 }
 
-// forEach loop: show hobbies with extra text
+// forEach loop
 hobbies.forEach(hobby => console.log("I enjoy " + hobby));
 
-// While loop: simple countdown example
+// NEW: While loop (countdown example)
 let countdown = 3;
 while (countdown > 0) {
     console.log("Countdown: " + countdown);
     countdown--;
 }
 
-// ================= DOM Interactions =================
-// Change the heading text using DOM
+// ================= Part 4: DOM Interactions =================
 const heading = document.getElementById("title");
 heading.textContent = "Welcome to " + myName + "'s page!";
 
-// Button 1: show an alert when clicked
+// 1) Button click event
 const button = document.getElementById("clickMe");
 button.addEventListener("click", () => {
     alert("Thanks for visiting my page!");
 });
 
-// Add hobbies dynamically to the list
+// 2) Add hobbies dynamically
 const hobbyList = document.getElementById("menu");
 hobbies.forEach(hobby => {
     const li = document.createElement("li");
@@ -72,19 +66,31 @@ hobbies.forEach(hobby => {
     hobbyList.appendChild(li);
 });
 
-// Make the heading text change color when clicked
+// 3) Toggle heading color
 heading.addEventListener("click", () => {
     heading.classList.toggle("active");
 });
 
-// Button 2: change the description text
+// 4) Change description text (now cycles through fun facts)
 const desc = document.getElementById("description");
 const changeBtn = document.getElementById("changeText");
+
+const descriptions = [
+    "This is my safe space, don't make it weird 😎.",
+    "I love coding and writing, and I enjoy making interactive web pages!",
+    "Fun fact: I can code while eating a tropical fruit salad 🍍🥭.",
+    "When I’m not coding, I’m probably daydreaming or writing stories ✍️.",
+    "Blue is my favorite color, it keeps me calm 💙."
+];
+
+let currentIndex = 0;
+
 changeBtn.addEventListener("click", () => {
-    desc.textContent = "I love coding and writing, and I enjoy making interactive web pages!";
+    currentIndex = (currentIndex + 1) % descriptions.length;
+    desc.textContent = descriptions[currentIndex];
 });
 
-// Button 3: add a new hobby to the list
+// 5) Add new hobby on button click
 const addBtn = document.getElementById("addHobby");
 addBtn.addEventListener("click", () => {
     const newHobby = prompt("Enter a new hobby:");
@@ -95,9 +101,9 @@ addBtn.addEventListener("click", () => {
     }
 });
 
-// Button 4: change the background color randomly
+// 6) Change background color
 const bgBtn = document.getElementById("changeBG");
 bgBtn.addEventListener("click", () => {
-    const colors = ["lightblue", "lightgreen", "lavender", "peachpuff", "mistyrose"];
-    document.body.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    document.body.style.backgroundColor = 
+        document.body.style.backgroundColor === "lightblue" ? "white" : "lightblue";
 });
