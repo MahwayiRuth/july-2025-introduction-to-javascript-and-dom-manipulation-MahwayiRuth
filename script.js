@@ -1,4 +1,5 @@
-// ================= Part 1: Variables & Conditionals =================
+// ================= Variables & Conditionals =================
+// Store my age and name, then check if I am old enough to vote.
 let myAge = 17;
 const myName = "Khensani";
 
@@ -8,16 +9,18 @@ if (myAge >= 18) {
     console.log(myName + " is too young to vote.");
 }
 
-// ================= Part 2: Custom Functions =================
+// ================= Functions =================
+// Function that greets the user with their name
 function greetUser(name) {
     return "Hi " + name + ", welcome to my page!";
 }
 
+// Function that describes my favorite snack and how much of it I want
 function favoriteSnack(snack, quantity) {
     return `I love ${quantity} servings of ${snack}!`;
 }
 
-// NEW: Function to calculate years until voting age
+// Function that calculates how many years are left until voting age
 function yearsUntilVoting(age) {
     if (age >= 18) {
         return "You are already old enough to vote!";
@@ -26,39 +29,42 @@ function yearsUntilVoting(age) {
     }
 }
 
+// Call functions and log results
 console.log(greetUser(myName));
 console.log(favoriteSnack("tropical fruit salad", 2));
 console.log(yearsUntilVoting(myAge));
 
-// ================= Part 3: Loops =================
+// ================= Loops =================
+// Create an array of hobbies
 const hobbies = ["coding", "writing"];
 
-// For loop
+// For loop: display hobbies one by one
 for (let i = 0; i < hobbies.length; i++) {
     console.log(hobbies[i]);
 }
 
-// forEach loop
+// forEach loop: show hobbies with extra text
 hobbies.forEach(hobby => console.log("I enjoy " + hobby));
 
-// NEW: While loop (countdown example)
+// While loop: simple countdown example
 let countdown = 3;
 while (countdown > 0) {
     console.log("Countdown: " + countdown);
     countdown--;
 }
 
-// ================= Part 4: DOM Interactions =================
+// ================= DOM Interactions =================
+// Change the heading text using DOM
 const heading = document.getElementById("title");
 heading.textContent = "Welcome to " + myName + "'s page!";
 
-// 1) Button click event
+// Button 1: show an alert when clicked
 const button = document.getElementById("clickMe");
 button.addEventListener("click", () => {
     alert("Thanks for visiting my page!");
 });
 
-// 2) Add hobbies dynamically
+// Add hobbies dynamically to the list
 const hobbyList = document.getElementById("menu");
 hobbies.forEach(hobby => {
     const li = document.createElement("li");
@@ -66,19 +72,19 @@ hobbies.forEach(hobby => {
     hobbyList.appendChild(li);
 });
 
-// 3) Toggle heading color
+// Make the heading text change color when clicked
 heading.addEventListener("click", () => {
     heading.classList.toggle("active");
 });
 
-// 4) Change description text
+// Button 2: change the description text
 const desc = document.getElementById("description");
 const changeBtn = document.getElementById("changeText");
 changeBtn.addEventListener("click", () => {
     desc.textContent = "I love coding and writing, and I enjoy making interactive web pages!";
 });
 
-// BONUS: Add new hobby on button click
+// Button 3: add a new hobby to the list
 const addBtn = document.getElementById("addHobby");
 addBtn.addEventListener("click", () => {
     const newHobby = prompt("Enter a new hobby:");
@@ -87,4 +93,11 @@ addBtn.addEventListener("click", () => {
         li.textContent = newHobby;
         hobbyList.appendChild(li);
     }
+});
+
+// Button 4: change the background color randomly
+const bgBtn = document.getElementById("changeBG");
+bgBtn.addEventListener("click", () => {
+    const colors = ["lightblue", "lightgreen", "lavender", "peachpuff", "mistyrose"];
+    document.body.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
 });
